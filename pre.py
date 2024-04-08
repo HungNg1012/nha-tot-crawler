@@ -5,14 +5,15 @@ import random
 import datetime
 from unidecode import unidecode
 import string
+import numpy as np
 
 def preProcess(fileNames):
     rawData = []
     for fileName in fileNames:
         with open(fileName+'.json', 'r', encoding='utf-8') as f:
             data = json.load(f)
-            rawData.append(data['data']['ads'])
-    return [item for sub_arr in rawData for item in sub_arr]
+            rawData.append(data)
+    return [element for sublist in rawData for subsublist in sublist for element in subsublist]
 
 def random_date(start_year, end_year):
     # Chọn ngẫu nhiên một năm từ start_year đến end_year
@@ -107,10 +108,10 @@ def extractHouse(data):
                         numberOfBedRooms=i['rooms'] if 'rooms' in i else "", 
                         numberOfToilets=i['toilets']  if 'toilets'  in i else "", 
                         # numberOfFloors=i['floors']  if 'floors'  in i else "",
-                        streetNumber=(i['street_number']  + ' ') if 'street_number'  in i else "" + i['street_name'],
-                        city=i['region_name'],\
-                        district=i['area_name'],
-                        ward=i['ward_name'],
+                        streetNumber=(i['street_number']  + ' ') if 'street_number'  in i else "" + i['street_name'] if 'street_name'  in i else "",
+                        city=i['region_name'] if 'region_name'  in i else "",\
+                        district=i['area_name'] if 'area_name'  in i else "",
+                        ward=i['ward_name'] if 'ward_name'  in i else "",
                         LanlordAccountId=i['account_id'])   
         newHouse['createAt'] = random_date(2022, 2024)
         newHouse['updatedAt'] = ""
