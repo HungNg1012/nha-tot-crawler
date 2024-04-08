@@ -112,7 +112,7 @@ def extractHouse(data):
                         city=i['region_name'] if 'region_name'  in i else "",\
                         district=i['area_name'] if 'area_name'  in i else "",
                         ward=i['ward_name'] if 'ward_name'  in i else "",
-                        LanlordAccountId=i['account_id'])   
+                        lanlordAccountId=i['account_id'])   
         newHouse['createAt'] = random_date(2022, 2024)
         newHouse['updatedAt'] = ""
         house.append(newHouse)
