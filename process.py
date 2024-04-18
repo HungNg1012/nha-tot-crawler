@@ -14,9 +14,9 @@ df = pd.read_csv(csv_file_path)
 # Step 2: Define the values for the new "City" column
 newVal = []
 for i in range(1,12001):
-    if (i <= 4001): newVal.append('can ho')
-    elif (i <= 8001): newVal.append('nha dat')
-    else: newVal.append('phong tro')
+    if (i <= 4001): newVal.append('can-ho')
+    elif (i <= 8001): newVal.append('nha-dat')
+    else: newVal.append('phong-tro')
  
 # Step 3: Add the new "City" column to the DataFrame
 df['type'] = newVal
